@@ -118,7 +118,10 @@ function filterMissions() {
       mission.name.toLowerCase().includes(query) ||
       mission.agency.toLowerCase().includes(query) ||
       mission.objective.toLowerCase().includes(query);
-    const matchAgency = selectedAgency === "all" || mission.agency.toLowerCase() === selectedAgency.toLowerCase();
+    const matchAgency =
+  selectedAgency === "all" ||
+  mission.agency.split("/").some(a => a.trim().toLowerCase() === selectedAgency.toLowerCase());
+
     const matchYear = !enteredYear || missionYear === enteredYear;
     return matchSearch && matchAgency && matchYear;
   });
