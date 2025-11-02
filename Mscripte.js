@@ -1,84 +1,131 @@
-const missionsSection = document.querySelector(".missions-section");
+// Elements
+const missionsContainer = document.getElementById("missions-container");
 const searchInput = document.getElementById("searchInput");
 const agencyFilter = document.getElementById("agencyFilter");
 const yearFilter = document.getElementById("yearFilter");
 
-let allMissions = [];
+const missionNameInput = document.getElementById("missionName");
+const missionAgencyInput = document.getElementById("missionAgency");
+const missionObjectiveInput = document.getElementById("missionObjective");
+const missionDateInput = document.getElementById("missionDate");
+const missionImageInput = document.getElementById("missionImage");
+const addBtn = document.querySelector(".add-mission button");
 
-// 🛰️ Fetch missions
+let missions = [];          // all missions
+let editingMissionId = null; // track edit
+
+// Load JSON
 fetch("MSN.json")
-  .then((response) => response.json())
-  .then((data) => {
-    allMissions = data;
-    displayMissions(allMissions);
-  })
-  .catch((error) => console.error("Error loading missions:", error));
+  .then(res => res.json())
+  .then(data => {
+    missions = data;
+    renderMissions(missions);
+  });
 
-// 💡 Display missions
-function displayMissions(missions) {
-  missionsSection.innerHTML = "";
-
-  if (missions.length === 0) {
-    missionsSection.innerHTML = "<p>No missions found.</p>";
+// Render missions (all or filtered)
+function renderMissions(list) {
+  missionsContainer.innerHTML = "";
+  if(list.length === 0){
+    missionsContainer.innerHTML = "<p>No missions found.</p>";
     return;
   }
-
-  missions.forEach((mission) => {
+  list.forEach(mission => {
     const card = document.createElement("div");
-    card.classList.add("mission-card");
+    card.className = "mission-card";
     card.innerHTML = `
-    <img src="${mission.image}" alt="${mission.name}">
+      <img src="${mission.image}" alt="${mission.name}">
       <h3>${mission.name}</h3>
-      <p><strong>Agency:</strong> ${mission.agency}</p>
-      <p><strong>Objective:</strong> ${mission.objective}</p>
-      <p><strong>Launch:</strong> ${mission.launchDate}</p>
+      <p>Agency: ${mission.agency}</p>
+      <p>Objective: ${mission.objective}</p>
+      <p>Launch Date: ${mission.launchDate}</p>
+      <button onclick="editMission(${mission.id})">Edit</button>
+      <button onclick="deleteMission(${mission.id})">Delete</button>
     `;
-    missionsSection.appendChild(card);
+    missionsContainer.appendChild(card);
   });
 }
 
-// 🧠 Filter + Search Logic
+// Add / Update mission
+function addOrUpdateMission() {
+  const name = missionNameInput.value.trim();
+  const agency = missionAgencyInput.value.trim();
+  const objective = missionObjectiveInput.value.trim();
+  const date = missionDateInput.value;
+  const image = missionImageInput.value.trim();
+
+  if (!name || !agency || !objective || !date || !image) return;
+
+  if (editingMissionId) {
+    const mission = missions.find(m => m.id === editingMissionId);
+    mission.name = name;
+    mission.agency = agency;
+    mission.objective = objective;
+    mission.launchDate = date;
+    mission.image = image;
+    editingMissionId = null;
+    addBtn.textContent = "Add Mission";
+  } else {
+    const newMission = {
+      id: missions.length ? missions[missions.length - 1].id + 1 : 1,
+      name, agency, objective, launchDate: date, image
+    };
+    missions.push(newMission);
+  }
+
+  clearForm();
+  renderMissions(missions);
+}
+
+addBtn.addEventListener("click", addOrUpdateMission);
+
+// Clear form
+function clearForm() {
+  missionNameInput.value = "";
+  missionAgencyInput.value = "";
+  missionObjectiveInput.value = "";
+  missionDateInput.value = "";
+  missionImageInput.value = "";
+}
+
+// Edit mission
+function editMission(id) {
+  const mission = missions.find(m => m.id === id);
+  missionNameInput.value = mission.name;
+  missionAgencyInput.value = mission.agency;
+  missionObjectiveInput.value = mission.objective;
+  missionDateInput.value = mission.launchDate;
+  missionImageInput.value = mission.image;
+
+  editingMissionId = id;
+  addBtn.textContent = "Save Mission";
+}
+
+// Delete mission
+function deleteMission(id) {
+  missions = missions.filter(m => m.id !== id);
+  renderMissions(missions);
+}
+
+// Filter / Search
 function filterMissions() {
   const query = searchInput.value.toLowerCase().trim();
   const selectedAgency = agencyFilter.value;
   const enteredYear = yearFilter.value.trim();
 
-  const filtered = allMissions.filter((mission) => {
-    const missionYear = parseInt(mission.launchDate.substring(0, 4));
+  const filtered = missions.filter(mission => {
+    const missionYear = mission.launchDate.substring(0, 4);
     const matchSearch =
       mission.name.toLowerCase().includes(query) ||
       mission.agency.toLowerCase().includes(query) ||
       mission.objective.toLowerCase().includes(query);
-    const matchAgency =
-      selectedAgency === "all" ||
-      mission.agency.toLowerCase().includes(selectedAgency.toLowerCase());
-
-const matchYear =
-  enteredYear === "" || missionYear === parseInt(enteredYear);
-
-
+    const matchAgency = selectedAgency === "all" || mission.agency.toLowerCase() === selectedAgency.toLowerCase();
+    const matchYear = !enteredYear || missionYear === enteredYear;
     return matchSearch && matchAgency && matchYear;
   });
 
-  displayMissions(filtered);
+  renderMissions(filtered);
 }
 
-// Event Listeners
 searchInput.addEventListener("input", filterMissions);
 agencyFilter.addEventListener("change", filterMissions);
 yearFilter.addEventListener("input", filterMissions);
-const missionsContainer = document.getElementById("missions-container");
-missionsContainer.innerHTML = ""; // not missionsSection
-
-missions.forEach((mission) => {
-  const card = document.createElement("div");
-  card.classList.add("mission-card");
-  card.innerHTML = `
-    <h3>${mission.name}</h3>
-    <p><strong>Agency:</strong> ${mission.agency}</p>
-    <p><strong>Objective:</strong> ${mission.objective}</p>
-    <p><strong>Launch:</strong> ${mission.launchDate}</p>
-  `;
-  missionsContainer.appendChild(card);
-});
-

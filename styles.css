@@ -1991,3 +1991,34 @@ footer {
   transform: scale(1.05);
   box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
 }
+.add-mission {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.add-mission input {
+  padding: 8px;
+  flex: 1 1 150px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.add-mission button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0077ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-mission button:hover {
+  background-color: #005bbb;
+}
