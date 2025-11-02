@@ -48,207 +48,86 @@
         <li><a href="about.html">A propos</a></li>
         <li><a href="planets.html">Planets</a></li>
         <li><a href="missions.html" class="active">Missions Spatiales</a></li>
-        <!-- <li><a href="contact.html">Contact</a></li> -->
+
         <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
       </ul>
     </div>
+
+    </div>
   </nav>
-<section class="missions-section">
-  <div id="missions-container" class="missions-grid"></div>
+  <section class="filter">
+  <!-- search for missions -->
+      <div class="search-box2">
+        <!-- <input type="text" id="searchInput" placeholder="Search missions..." /> -->
+        <input type="text" id="searchInput" placeholder="Search..." />
+
+        <i class="fas fa-search"></i>
+      </div>
+
+  <!-- Agency Filter -->
+  <select id="agencyFilter" class="fancy-select">
+    <option value="all">All Agencies</option>
+    <option value="NASA">NASA</option>
+    <option value="ESA">ESA</option>
+    <option value="Roscosmos">Roscosmos</option>
+    <option value="ISRO">ISRO</option>
+    <option value="JAXA">JAXA</option>
+  </select>
+
+  <!-- Year Filter -->
+  <input 
+    type="number" 
+    id="yearFilter" 
+    class="year-input" 
+    placeholder="Enter year (e.g. 2020)" 
+    min="1900" 
+    max="2100"
+  />
 </section>
 
-  <!-- <section class="Mhead">
-    <h3 style="margin: auto;">Missions Spatiales</h3>
-    <p>Découvrez les missions spatiales les plus emblématiques qui ont marqué l'histoire de <br>
-      l'exploration spatiale et continuent de repousser les limites de nos connaissances.</p>
-  </section>
+
+
   <section class="missions-section">
-  
-    <div class="mission-row">
-      <div class="mission-card">
-        <img src="missions/applo 11.png" alt="Apollo 11" />
-        <div class="mission-content">
-          <h3 class="mission-title">Apollo 11</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Première mission habitée à atterrir sur la Lune.
-          </p>
-          <div class="mission-date">📅 16 juillet 1969</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/mars.png" alt="Mars Curiosity" />
-        <div class="mission-content">
-          <h3 class="mission-title">Mars Curiosity</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Rover martien conçu pour explorer le cratère Gale et étudier la
-            géologie et le climat de Mars pour déterminer si la planète a déjà pu
-            abriter la vie.
-          </p>
-          <div class="mission-date">📅 Lancement : 26 novembre 2011</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/James Webb Space Telescope.png" alt="James Webb Space Telescope" />
-        <div class="mission-content">
-          <h3 class="mission-title">James Webb Space Telescope</h3>
-          <div class="mission-org">🚀 NASA/ESA/CSA</div>
-          <p class="mission-desc">
-            Télescope spatial infrarouge le plus puissant jamais construit. Il
-            observe les premières galaxies et étudie la formation des étoiles et
-            des planètes.
-          </p>
-          <div class="mission-date">📅 Lancement : 25 décembre 2021</div>
-        </div>
-      </div>
-
-    </div>
-
-
-
- 
-    <div class="mission-row">
-      <div class="mission-card">
-        <img src="missions/Artemis I.png" alt="Artemis I" />
-        <div class="mission-content">
-          <h3 class="mission-title">Artemis I</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Première mission du programme Artemis visant à retourner sur la
-            Lune. Vol d'essai sans équipage de la capsule Orion autour de la
-            Lune.
-          </p>
-          <div class="mission-date">📅 Lancement : 16 novembre 2022</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/12.png" alt="Voyager 1 & 2" />
-        <div class="mission-content">
-          <h3 class="mission-title">Voyager 1 & 2</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Missions jumelles lancées en 1977 pour explorer les planètes
-            extérieures. Voyager 1 est maintenant l'objet humain le plus éloigné
-            de la Terre.
-          </p>
-          <div class="mission-date">📅 Lancement : 5 septembre 1977</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/persev.png" alt="Perseverance" />
-        <div class="mission-content">
-          <h3 class="mission-title">Perseverance</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Rover martien cherchant des signes de vie microbienne ancienne et
-            collectant des échantillons pour un retour futur sur Terre.
-          </p>
-          <div class="mission-date">📅 Lancement : 30 juillet 2020</div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    <div class="mission-row">
-      <div class="mission-card">
-        <img src="missions/Hubble Space Telescope.png" alt="Hubble Space Telescope" />
-        <div class="mission-content">
-          <h3 class="mission-title">Hubble Space Telescope</h3>
-          <div class="mission-org">🚀 NASA/ESA</div>
-          <p class="mission-desc">
-            Télescope spatial en orbite depuis 1990, ayant révolutionné notre
-            compréhension de l'univers avec des images spectaculaires et des
-            découvertes majeures.
-          </p>
-          <div class="mission-date">📅 Lancement : 24 avril 1990</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/New Horizon.png" alt="New Horizons" />
-        <div class="mission-content">
-          <h3 class="mission-title">New Horizons</h3>
-          <div class="mission-org">🚀 NASA</div>
-          <p class="mission-desc">
-            Première mission à survoler Pluton en 2015, révélant un monde
-            géologiquement actif et diversifié. Continue maintenant dans la
-            ceinture de Kuiper.
-          </p>
-          <div class="mission-date">📅 Lancement : 19 janvier 2006</div>
-        </div>
-      </div>
-      <div class="mission-card">
-        <img src="missions/C-H.png" alt="Cassini-Huygens" />
-        <div class="mission-content">
-          <h3 class="mission-title">Cassini-Huygens</h3>
-          <div class="mission-org">🚀 NASA/ESA/ASI</div>
-          <p class="mission-desc">
-            Mission d'exploration de Saturne et ses lunes. A révélé des océans
-            sous la surface d'Encelade et des lacs de méthane sur Titan.
-          </p>
-          <div class="mission-date">📅 Lancement : 15 octobre 1997</div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="mission-row">
-      <div class="mission-card">
-        <img src="missions/ISS (Station Spatiale Internationale).png" alt="ISS (Station Spatiale Internationale)" />
-        <div class="mission-content">
-          <h3 class="mission-title">ISS (Station Spatiale Internationale)</h3>
-          <div class="mission-org">🚀 NASA/Roscosmos/ESA/JAXA/CSA</div>
-          <p class="mission-desc">
-            Laboratoire orbital habité en permanence depuis 2000. Plateforme de
-            recherche scientifique et de coopération internationale.
-          </p>
-          <div class="mission-date">📅 Lancement : 20 novembre 1998</div>
-        </div>
-      </div>
-    </div>
+    <div id="missions-container" class="missions-grid"></div>
   </section>
-  <section class="exploration"> -->
 
+  <h2>L’Ère de l’Exploration Spatiale : </h2>
 
-    <h2>L’Ère de l’Exploration Spatiale : </h2>
-
-    <div class="era">
-      <div class="line"></div>
-      <div class="content">
-        <h3>Années 1960-1970 : L'Âge d'Or</h3>
-        <p>Les missions Apollo marquent l'apogée de la course à l'espace. L'humanité marche sur la Lune pour la <br>
-          première fois en 1969. Les sondes Voyager sont lancées pour explorer les planètes extérieures.</p>
-      </div>
+  <div class="era">
+    <div class="line"></div>
+    <div class="content">
+      <h3>Années 1960-1970 : L'Âge d'Or</h3>
+      <p>Les missions Apollo marquent l'apogée de la course à l'espace. L'humanité marche sur la Lune pour la <br>
+        première fois en 1969. Les sondes Voyager sont lancées pour explorer les planètes extérieures.</p>
     </div>
+  </div>
 
-    <div class="era">
-      <div class="line"></div>
-      <div class="content">
-        <h3>Années 1990-2000 : Télescopes et Stations</h3>
-        <p>Lancement du télescope Hubble qui révolutionne notre vision de l'univers. Construction de la Station <br>
-          Spatiale Internationale, symbole de coopération mondiale.</p>
-      </div>
+  <div class="era">
+    <div class="line"></div>
+    <div class="content">
+      <h3>Années 1990-2000 : Télescopes et Stations</h3>
+      <p>Lancement du télescope Hubble qui révolutionne notre vision de l'univers. Construction de la Station <br>
+        Spatiale Internationale, symbole de coopération mondiale.</p>
     </div>
+  </div>
 
-    <div class="era">
-      <div class="line"></div>
-      <div class="content">
-        <h3>Années 2010-2020 : Mars et Au-delà</h3>
-        <p>Multiplication des missions martiennes avec Curiosity et Perseverance. Survol historique de Pluton par <br>
-          New Horizons. Le télescope James Webb ouvre une nouvelle fenêtre sur l'univers primitif.</p>
-      </div>
+  <div class="era">
+    <div class="line"></div>
+    <div class="content">
+      <h3>Années 2010-2020 : Mars et Au-delà</h3>
+      <p>Multiplication des missions martiennes avec Curiosity et Perseverance. Survol historique de Pluton par <br>
+        New Horizons. Le télescope James Webb ouvre une nouvelle fenêtre sur l'univers primitif.</p>
     </div>
+  </div>
 
-    <div class="era">
-      <div class="line"></div>
-      <div class="content">
-        <h3>2025 et au-delà : Retour sur la Lune</h3>
-        <p>Le programme Artemis prépare le retour de l'humanité sur la Lune avec des ambitions de bases lunaires <br>
-          permanentes et de futures missions habitées vers Mars.</p>
-      </div>
+  <div class="era">
+    <div class="line"></div>
+    <div class="content">
+      <h3>2025 et au-delà : Retour sur la Lune</h3>
+      <p>Le programme Artemis prépare le retour de l'humanité sur la Lune avec des ambitions de bases lunaires <br>
+        permanentes et de futures missions habitées vers Mars.</p>
     </div>
+  </div>
   </section>
   <footer class="footer">
     <div class="footer-content">
