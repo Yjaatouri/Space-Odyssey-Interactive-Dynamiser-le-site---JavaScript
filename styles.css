@@ -1598,15 +1598,17 @@ footer {
 }
 
 .missions-section {
-  margin-top: 97px;
-  margin-left: 177px;
-  gap: 40px;
-  width: 100%;
-  max-width: 1200px;
-  padding: 40px 20px;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: start;
+  padding: 20px;
+}
+.missions-section:has(.mission-card:only-child) {
   justify-content: center;
 }
+
 
 .mission-row {
   display: grid;
@@ -1945,13 +1947,16 @@ footer {
 .year-input {
   padding: 10px 14px;
   border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: linear-gradient(135deg, #232526, #414345);
+  border: 2px solid rgba(76, 11, 97, 0.3);
+  background: linear-gradient(135deg, #232526, #4b076f);
   color: white;
   font-size: 16px;
   outline: none;
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
   transition: 0.3s;
+  margin-left: 10em;
+  margin-right: 10em;
+  width: 12em;
 }
 
 .fancy-select:hover,
