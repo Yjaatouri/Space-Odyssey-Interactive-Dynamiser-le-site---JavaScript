@@ -2024,6 +2024,62 @@ footer {
   color: white;
 }
 
-.crudB{
-  
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #a71d2a;
+}
+.cancel-btn {
+  background-color: #dc3545; /* red */
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #a71d2a; /* darker red on hover */
+}
+/* Base button style */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+/* Cancel Edit button */
+#cancelEditBtn.cancel-btn {
+  background-color: #dc3545 !important; /* red */
+  color: white !important;
+}
+
+#cancelEditBtn.cancel-btn:hover {
+  background-color: #a71d2a !important; /* darker red on hover */
 }

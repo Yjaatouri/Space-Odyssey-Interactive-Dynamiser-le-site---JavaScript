@@ -10,14 +10,15 @@ const missionObjectiveInput = document.getElementById("missionObjective");
 const missionDateInput = document.getElementById("missionDate");
 const missionImageInput = document.getElementById("missionImage");
 const addBtn = document.querySelector(".add-mission button");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-let missions = [];          // all missions
+let missions = []; // all missions
 let editingMissionId = null; // track edit
 
 // Load JSON
 fetch("MSN.json")
-  .then(res => res.json())
-  .then(data => {
+  .then((res) => res.json())
+  .then((data) => {
     missions = data;
     renderMissions(missions);
   });
@@ -25,11 +26,11 @@ fetch("MSN.json")
 // Render missions (all or filtered)
 function renderMissions(list) {
   missionsContainer.innerHTML = "";
-  if(list.length === 0){
+  if (list.length === 0) {
     missionsContainer.innerHTML = "<p>No missions found.</p>";
     return;
   }
-  list.forEach(mission => {
+  list.forEach((mission) => {
     const card = document.createElement("div");
     card.className = "mission-card";
     card.innerHTML = `
@@ -38,8 +39,8 @@ function renderMissions(list) {
       <p>Agency: ${mission.agency}</p>
       <p>Objective: ${mission.objective}</p>
       <p>Launch Date: ${mission.launchDate}</p>
-      <button onclick="editMission(${mission.id})">Edit</button>
-      <button onclick="deleteMission(${mission.id})">Delete</button>
+      <button class="btn edit-btn" onclick="editMission(${mission.id})">Edit</button>
+      <button class="btn delete-btn" onclick="deleteMission(${mission.id})">Delete</button>
     `;
     missionsContainer.appendChild(card);
   });
@@ -56,7 +57,7 @@ function addOrUpdateMission() {
   if (!name || !agency || !objective || !date || !image) return;
 
   if (editingMissionId) {
-    const mission = missions.find(m => m.id === editingMissionId);
+    const mission = missions.find((m) => m.id === editingMissionId);
     mission.name = name;
     mission.agency = agency;
     mission.objective = objective;
@@ -67,13 +68,18 @@ function addOrUpdateMission() {
   } else {
     const newMission = {
       id: missions.length ? missions[missions.length - 1].id + 1 : 1,
-      name, agency, objective, launchDate: date, image
+      name,
+      agency,
+      objective,
+      launchDate: date,
+      image,
     };
     missions.push(newMission);
   }
 
   clearForm();
   renderMissions(missions);
+  cancelEditBtn.style.display = "none"; // hide cancel button after add/update
 }
 
 addBtn.addEventListener("click", addOrUpdateMission);
@@ -89,7 +95,7 @@ function clearForm() {
 
 // Edit mission
 function editMission(id) {
-  const mission = missions.find(m => m.id === id);
+  const mission = missions.find((m) => m.id === id);
   missionNameInput.value = mission.name;
   missionAgencyInput.value = mission.agency;
   missionObjectiveInput.value = mission.objective;
@@ -98,11 +104,25 @@ function editMission(id) {
 
   editingMissionId = id;
   addBtn.textContent = "Save Mission";
+  cancelEditBtn.style.display = "inline-block"; // show cancel button
 }
+
+// Cancel edit
+cancelEditBtn.addEventListener("click", () => {
+  clearForm();
+  editingMissionId = null;
+  addBtn.textContent = "Add Mission";
+  cancelEditBtn.style.display = "none";
+});
 
 // Delete mission
 function deleteMission(id) {
-  missions = missions.filter(m => m.id !== id);
+  const confirmDelete = confirm(
+    "Êtes-vous sûr de vouloir supprimer cette mission ?"
+  );
+  if (!confirmDelete) return;
+
+  missions = missions.filter((m) => m.id !== id);
   renderMissions(missions);
 }
 
@@ -112,16 +132,17 @@ function filterMissions() {
   const selectedAgency = agencyFilter.value;
   const enteredYear = yearFilter.value.trim();
 
-  const filtered = missions.filter(mission => {
+  const filtered = missions.filter((mission) => {
     const missionYear = mission.launchDate.substring(0, 4);
     const matchSearch =
       mission.name.toLowerCase().includes(query) ||
       mission.agency.toLowerCase().includes(query) ||
       mission.objective.toLowerCase().includes(query);
     const matchAgency =
-  selectedAgency === "all" ||
-  mission.agency.split("/").some(a => a.trim().toLowerCase() === selectedAgency.toLowerCase());
-
+      selectedAgency === "all" ||
+      mission.agency
+        .split("/")
+        .some((a) => a.trim().toLowerCase() === selectedAgency.toLowerCase());
     const matchYear = !enteredYear || missionYear === enteredYear;
     return matchSearch && matchAgency && matchYear;
   });
