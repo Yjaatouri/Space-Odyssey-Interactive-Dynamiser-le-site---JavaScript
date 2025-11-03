@@ -153,3 +153,4 @@ function filterMissions() {
 searchInput.addEventListener("input", filterMissions);
 agencyFilter.addEventListener("change", filterMissions);
 yearFilter.addEventListener("input", filterMissions);
+
