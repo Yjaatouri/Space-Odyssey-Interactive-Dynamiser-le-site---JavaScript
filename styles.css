@@ -1918,7 +1918,7 @@ footer {
 .search-box2 {
   position: relative;
   width: 300px;
-  margin: 20px auto;
+  /* margin: 20px auto; */
 }
 
 .search-box2 input {
@@ -1932,6 +1932,7 @@ footer {
   font-weight: bold;
   outline: none;
   transition: all 0.3s ease;
+  margin-left: 5em;
 }
 
 .filter {
@@ -1954,8 +1955,8 @@ footer {
   outline: none;
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
   transition: 0.3s;
-  margin-left: 10em;
-  margin-right: 10em;
+  margin-left: 7em;
+  margin-right: -3em;
   width: 12em;
 }
 
@@ -2083,3 +2084,21 @@ footer {
 #cancelEditBtn.cancel-btn:hover {
   background-color: #a71d2a !important; /* darker red on hover */
 }
+/* Target by ID */
+#favoriteFilter {
+    background-color: #450b65;;  
+    color: #ffffff;               
+    font-size: 16px;            
+    padding: 5px 10px;          
+    width: 8em;
+    height: 2em;
+    border-radius: 5px;       
+    outline: none;   
+    margin-right: -3em;           
+}
+
+/* Change border color on focus */
+#favoriteFilter:focus {
+    border-color: #FF0000;
+}
+
