@@ -74,9 +74,17 @@
 </section>
 
   <section class="filter">
+    <!-- Favorites Button -->
+<button id="showFavoritesBtn" class="btn">★ Favorites</button>
+
+<!-- Small panel for favorites -->
+<div id="favoritesPanel" class="favorites-panel" style="display:none;">
+  <h2>Favorite Missions</h2>
+  <div id="favorites-panel-container" class="missions-grid"></div>
+</div>
     <select id="favoriteFilter">
   <option value="all">All Missions</option>
-  <option value="favorite">Favorites Only</option>
+  <option value="favorite">Favorites</option>
 </select>
 
   <!-- search for missions -->
@@ -106,6 +114,9 @@
     min="1900" 
     max="2100"
   />
+
+
+
 </section>
 
 

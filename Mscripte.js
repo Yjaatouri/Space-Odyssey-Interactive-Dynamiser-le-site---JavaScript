@@ -198,6 +198,9 @@ function filterMissions() {
   renderMissions(filtered);
 }
 
+
+
+
 // ===============================
 // Event Listeners
 // ===============================
@@ -205,3 +208,43 @@ searchInput.addEventListener("input", filterMissions);
 agencyFilter.addEventListener("change", filterMissions);
 yearFilter.addEventListener("input", filterMissions);
 favoriteFilter.addEventListener("change", filterMissions);
+const showFavoritesBtn = document.getElementById("showFavoritesBtn");
+
+
+const favoritesPanel = document.getElementById("favoritesPanel");
+const favoritesPanelContainer = document.getElementById("favorites-panel-container");
+
+let panelOpen = false;
+
+showFavoritesBtn.addEventListener("click", () => {
+  panelOpen = !panelOpen;
+
+  if (panelOpen) {
+    const favoriteMissions = missions.filter(m => m.favorite); // get only favorite missions
+    renderFavorites(favoriteMissions);
+    favoritesPanel.style.display = "block"; // show small page
+  } else {
+    favoritesPanel.style.display = "none"; // hide small page
+  }
+});
+
+function renderFavorites(list) {
+  favoritesPanelContainer.innerHTML = ""; // clear panel
+  if (list.length === 0) {
+    favoritesPanelContainer.innerHTML = "<p>No favorite missions yet.</p>";
+    return;
+  }
+
+  list.forEach(mission => {
+    const card = document.createElement("div");
+    card.className = "mission-card";
+    card.innerHTML = `
+      <img src="${mission.image}" alt="${mission.name}">
+      <h3>${mission.name}</h3>
+      <p>Agency: ${mission.agency}</p>
+      <p>Objective: ${mission.objective}</p>
+      <p>Launch Date: ${mission.launchDate}</p>
+    `;
+    favoritesPanelContainer.appendChild(card);
+  });
+}
