@@ -18,16 +18,31 @@ const cancelEditBtn = document.getElementById("cancelEditBtn");
 // ===============================
 let missions = [];
 let editingMissionId = null;
+// Save 
+function saveMissions() {
+  localStorage.setItem("missions", JSON.stringify(missions));
+}
+
 // ===============================
 // Load JSON
 // ===============================
-fetch("MSN.json")
-  .then(res => res.json())
-  .then(data => {
-    missions = data.map(m => ({ ...m, favorite: m.favorite || false }));
-    renderMissions(missions);
-  })
-  .catch(err => console.error("Error loading missions:", err));
+// Try to load missions from localStorage first
+const savedMissions = JSON.parse(localStorage.getItem("missions"));
+
+if (savedMissions && savedMissions.length > 0) {
+  missions = savedMissions;
+  renderMissions(missions);
+} else {
+  fetch("MSN.json")
+    .then(res => res.json())
+    .then(data => {
+      missions = data.map(m => ({ ...m, favorite: m.favorite || false }));
+      renderMissions(missions);
+      saveMissions(); // save initial data to localStorage
+    })
+    .catch(err => console.error("Error loading missions:", err));
+}
+
 // ===============================
 // Render Missions
 // ===============================
@@ -91,6 +106,7 @@ function addOrUpdateMission() {
   }
   clearForm();
   renderMissions(missions);
+  saveMissions();
   cancelEditBtn.style.display = "none";
 }
 addBtn.addEventListener("click", addOrUpdateMission);
@@ -132,6 +148,8 @@ function deleteMission(id) {
   if (!confirm("Êtes-vous sûr de vouloir supprimer cette mission ?")) return;
   missions = missions.filter(m => m.id !== id);
   renderMissions(missions);
+  saveMissions();
+
 }
 // ===============================
 // Favorite Button
@@ -143,8 +161,10 @@ missionsContainer.addEventListener("click", e => {
     const mission = missions.find(m => m.id === id);
     mission.favorite = !mission.favorite;
     e.target.style.background = mission.favorite ? "yellow" : "white";
+    saveMissions(); // ✅ add this line
   }
 });
+
 // ===============================
 // Filter / Search
 // ===============================
@@ -172,6 +192,11 @@ function filterMissions() {
   });
   renderMissions(filtered);
 }
+function resetMissions() {
+  localStorage.removeItem("missions");
+  location.reload();
+}
+
 // ===============================
 // Event Listeners
 // ===============================

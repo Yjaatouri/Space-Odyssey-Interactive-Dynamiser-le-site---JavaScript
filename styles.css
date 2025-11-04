@@ -2177,3 +2177,26 @@ footer {
   text-align: center;
   box-shadow: 0 0 10px #610d78;
 }
+
+#resetButton {
+  background-color: #45197a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-left: 4em;
+}
+
+#resetButton:hover {
+  background-color: #4a1e73; /* slightly lighter for hover */
+  transform: scale(1.05);
+}
+
+#resetButton:active {
+  background-color: #2a0f3b;
+  transform: scale(0.98);
+}
