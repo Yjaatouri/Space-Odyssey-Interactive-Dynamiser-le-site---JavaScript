@@ -58,14 +58,14 @@
   <section class="add-mission">
 
 
-  <h2 style="color: azure;">Add / Edit Mission</h2>
+  <h2 style="color: azure;">Ajouter / Modifier Mission</h2>
   <div class="form-group">
-    <input type="text" id="missionName" placeholder="Mission Name">
-    <input type="text" id="missionAgency" placeholder="Agency">
+    <input type="text" id="missionName" placeholder="Nom de mission">
+    <input type="text" id="missionAgency" placeholder="Agence">
     <input type="text" id="missionObjective" placeholder="Objective">
     <input type="date" id="missionDate">
     <input type="text" id="missionImage" placeholder="Image URL">
-    <button>Add Mission</button>
+    <button>Ajouter Mission</button>
     <button type="button" id="cancelEditBtn" class="btn cancel-btn" style="display:none;">Cancel Edit</button>
 
 
@@ -75,29 +75,29 @@
 
   <section class="filter">
     <!-- Favorites Button -->
-<button id="showFavoritesBtn" class="btn">★ Favorites</button>
+<button id="showFavoritesBtn" class="btn">Favorites</button>
 
 <!-- Small panel for favorites -->
 <div id="favoritesPanel" class="favorites-panel" style="display:none;">
-  <h2>Favorite Missions</h2>
+  <!-- <h2>Missions Favorites</h2> -->
   <div id="favorites-panel-container" class="missions-grid"></div>
 </div>
     <select id="favoriteFilter">
-  <option value="all">All Missions</option>
+  <option value="all">Tous les Missions</option>
   <option value="favorite">Favorites</option>
 </select>
 
   <!-- search for missions -->
       <div class="search-box2">
         <!-- <input type="text" id="searchInput" placeholder="Search missions..." /> -->
-        <input type="text" id="searchInput" placeholder="Search..." />
+        <input type="text" id="searchInput" placeholder="Recherch..." />
 
         <i class="fas fa-search"></i>
       </div>
 
   <!-- Agency Filter -->
   <select id="agencyFilter" class="fancy-select">
-    <option value="all">All Agencies</option>
+    <option value="all">Tous les agences</option>
     <option value="NASA">NASA</option>
     <option value="ESA">ESA</option>
     <option value="Roscosmos">Roscosmos</option>
@@ -110,7 +110,7 @@
     type="number" 
     id="yearFilter" 
     class="year-input" 
-    placeholder="Enter year (e.g. 2020)" 
+    placeholder="Enter annee" 
     min="1900" 
     max="2100"
   />

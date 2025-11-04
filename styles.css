@@ -2007,7 +2007,7 @@ footer {
 .add-mission input {
   padding: 8px;
   flex: 1 1 150px;
-  border: 1px solid #aaa;
+  border: 1px solid #fbfafa;
   border-radius: 5px;
 }
 
@@ -2086,11 +2086,11 @@ footer {
 }
 /* Target by ID */
 #favoriteFilter {
-    background-color: #ffff00;;  
-    color: #000000;               
+    background-color: #361544;  
+    color: #ffffff;               
     font-size: 16px;            
     padding: 5px 10px;          
-    width: 8em;
+    width: 12em;
     height: 2em;
     border-radius: 5px;       
     outline: none;   
@@ -2154,7 +2154,7 @@ footer {
   border-radius: 12px;
   box-shadow: 0 0 20px #62076b;
   z-index: 1000;
-  height: 32em;
+  height: 27em;
 }
 
 .favorites-panel h2 {
@@ -2171,7 +2171,7 @@ footer {
 }
 
 #favorites-panel-container .mission-card {
-  background: #c5c3c3;
+  background: #ffffff;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
