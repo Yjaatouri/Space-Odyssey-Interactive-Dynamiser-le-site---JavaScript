@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
-  if (!form) return; // stop if this page has no contact form
+  if (!form) return; // arrêter si cette page n’a pas de formulaire de contact
 
-  // Helper to show error
+  // Fonction d’aide pour afficher une erreur
   function showError(input, message) {
     let error = input.nextElementSibling;
     if (!error || !error.classList.contains("error-message")) {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.classList.remove("valid");
   }
 
-  // Helper to clear error
+  // Fonction d’aide pour effacer une erreur
   function clearError(input) {
     let error = input.nextElementSibling;
     if (error && error.classList.contains("error-message")) {
@@ -38,26 +38,32 @@ document.addEventListener("DOMContentLoaded", () => {
     let isValid = true;
     [firstname, lastname, email, phone, message].forEach(clearError);
 
-    // Validate inputs
-    if (!firstname.value.trim()) { showError(firstname, "First name is required"); isValid = false; }
-    if (!lastname.value.trim()) { showError(lastname, "Last name is required"); isValid = false; }
+    // Validation des champs
+    if (!firstname.value.trim()) { showError(firstname, "Le prénom est obligatoire"); isValid = false; }
+    if (!lastname.value.trim()) { showError(lastname, "Le nom est obligatoire"); isValid = false; }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim()) { showError(email, "Email is required"); isValid = false; }
-    else if (!emailRegex.test(email.value.trim())) { showError(email, "Enter a valid email"); isValid = false; }
+    if (!email.value.trim()) { showError(email, "L’adresse e-mail est obligatoire"); isValid = false; }
+    else if (!emailRegex.test(email.value.trim())) { showError(email, "Entrez une adresse e-mail valide"); isValid = false; }
 
-    if (!phone.value.trim()) { showError(phone, "Phone is required"); isValid = false; }
- else if (!/^\+?[\d\s().-]{7,20}$/.test(phone.value.trim())) { 
-  showError(phone, "Enter a valid phone number"); 
-  isValid = false; 
+    if (!phone.value.trim()) { showError(phone, "Le numéro de téléphone est obligatoire"); isValid = false; }
+    else if (!/^\+?[\d\s().-]{7,20}$/.test(phone.value.trim())) { 
+      showError(phone, "Entrez un numéro de téléphone valide"); 
+      isValid = false; 
+    }
+
+    if (!message.value.trim()) {
+  showError(message, "Le message ne peut pas être vide.");
+  isValid = false;
+} else if (message.value.trim().length < 8) {
+  showError(message, "Le message doit contenir au moins 8 caractères.");
+  isValid = false;
 }
 
 
-    if (!message.value.trim()) { showError(message, "Message cannot be empty"); isValid = false; }
-
-    // Submit if valid
+    // Soumission si tout est valide
     if (isValid) {
-      alert(`Thank you ${firstname.value}! Your message about "${subject}" has been sent.`);
+      alert(`Merci ${firstname.value} ! Votre message à propos de "${subject}" a été envoyé.`);
       form.reset();
       [firstname, lastname, email, phone, message].forEach(input => input.classList.remove("valid"));
     }
