@@ -237,3 +237,84 @@ function renderFavorites(list) {
     favoritesPanelContainer.appendChild(card);
   });
 }
+
+// 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+
+  // Function to show error message
+  function showError(input, message) {
+    let error = input.nextElementSibling;
+    if (!error || !error.classList.contains("error-message")) {
+      error = document.createElement("div");
+      error.className = "error-message";
+      input.parentNode.appendChild(error);
+    }
+    error.textContent = message;
+  }
+
+  // Function to clear error message
+  function clearError(input) {
+    let error = input.nextElementSibling;
+    if (error && error.classList.contains("error-message")) {
+      error.textContent = "";
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Get input values
+    const firstname = document.getElementById("firstname");
+    const lastname = document.getElementById("lastname");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const message = document.getElementById("message");
+    const subject = form.querySelector('input[name="subject"]:checked').value;
+
+    let isValid = true;
+
+    // Clear previous errors
+    [firstname, lastname, email, phone, message].forEach(clearError);
+
+    // Validation
+    if (!firstname.value.trim()) {
+      showError(firstname, "First name is required");
+      isValid = false;
+    }
+
+    if (!lastname.value.trim()) {
+      showError(lastname, "Last name is required");
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim()) {
+      showError(email, "Email is required");
+      isValid = false;
+    } else if (!emailRegex.test(email.value.trim())) {
+      showError(email, "Please enter a valid email");
+      isValid = false;
+    }
+
+    if (!phone.value.trim()) {
+      showError(phone, "Phone number is required");
+      isValid = false;
+    } else if (!/^\d{7,15}$/.test(phone.value.trim())) {
+      showError(phone, "Enter a valid phone number (7-15 digits)");
+      isValid = false;
+    }
+
+    if (!message.value.trim()) {
+      showError(message, "Message cannot be empty");
+      isValid = false;
+    }
+
+    // If everything is valid
+    if (isValid) {
+      alert(`Thank you ${firstname.value}! Your message about "${subject}" has been sent.`);
+      form.reset();
+    }
+  });
+});
+

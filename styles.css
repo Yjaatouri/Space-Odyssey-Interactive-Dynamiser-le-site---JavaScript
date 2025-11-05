@@ -2200,3 +2200,75 @@ footer {
   background-color: #2a0f3b;
   transform: scale(0.98);
 }
+
+/* validation */
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* Optional: highlight invalid input */
+input.invalid,
+textarea.invalid {
+  border: 2px solid red;
+}
+
+/* Optional: highlight valid input */
+input.valid,
+textarea.valid {
+  border: 2px solid green;
+}
+
+/* Basic form styling (optional) */
+.contact-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border: 2px solid #361544; /* your theme color */
+}
+
+/* Button styling */
+.send-btn {
+  background-color: #361544;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.send-btn:hover {
+  background-color: #5a2e73;
+}
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+input.invalid, textarea.invalid {
+  border: 2px solid red;
+}
+
+input.valid, textarea.valid {
+  border: 2px solid green;
+}
